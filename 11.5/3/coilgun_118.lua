@@ -47,7 +47,6 @@ Dkat = ((CoilsAmount*2*Dpr)+Dstvola) 	-- ¬нешний диаметр катушки, милиметр
 
 
 mode = read(handle, "*n", "*l")	-- mode 
-Vykl = read(handle, "*n", "*l")	-- mode 
 
 closefile(handle)
 --------------------------------------------------------------------------------
@@ -427,11 +426,7 @@ repeat  	------------------------------------------------------------ начинаем ц
 
 	if Uc< 0 then  Uc=0 end   --если стоит паралельный диод
 
-	if x > Vykl/1000 then -- выключаем ток 
-		Uc=0
-	end
-
-        -- if (mode >0) and (Vel<Vmax) then I=0 end
+        if (mode >0) and (Vel<Vmax) then I=0 end
 	
 	if x > (Lpuli+Lkat-Lsdv) and Force >-1  then I=0 end -- ѕул€ вылетела за пределы катушки и сила очень маленька€
 			
