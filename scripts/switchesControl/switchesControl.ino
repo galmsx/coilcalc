@@ -1,6 +1,8 @@
+#include "fastIO.h"
 
 const int buttonPin = 2;
-const int firePin = 3;
+const int firstFirePin = 3;
+const int secondFirePin = 4;
 
 bool shouldFire = false;
 int lastButtonState = LOW;  // the previous reading from the input pin
@@ -15,8 +17,10 @@ unsigned long debounceDelay = 50;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(firePin, OUTPUT);
-  digitalWrite(firePin, LOW);
+  pinMode(firstFirePin, OUTPUT);
+  pinMode(secondFirePin, OUTPUT);
+  digitalWrite(firstFirePin, 0);
+  digitalWrite(secondFirePin, 0);
 
   pinMode(buttonPin, INPUT_PULLUP);
 }
@@ -27,14 +31,20 @@ void loop() {
   if (reading == LOW && !arleadyFired) {
     shouldFire = true;
   }
-  if(reading == HIGH && arleadyFired){
+  if (reading == HIGH && arleadyFired) {
     arleadyFired = false;
   }
 
   if (shouldFire) {
-    digitalWrite(firePin, HIGH);
-    delayMicroseconds(3000);
-    digitalWrite(firePin, LOW);
+    fastDigitalWrite(firstFirePin, 1);
+    delayMicroseconds(2600);  // 3000
+    fastDigitalWrite(secondFirePin, 1);
+    delayMicroseconds(390);  // 3000
+    fastDigitalWrite(firstFirePin, 0);
+    delayMicroseconds(750);
+    fastDigitalWrite(secondFirePin, 0);
+
+
     shouldFire = false;
     arleadyFired = true;
   }
