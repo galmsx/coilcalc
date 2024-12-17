@@ -36,13 +36,24 @@ void loop() {
   }
 
   if (shouldFire) {
+    //3100 first 3380 in sec stage
     fastDigitalWrite(firstFirePin, 1);
-    delayMicroseconds(2600);  // 3000
+    delayMicroseconds(2930);
     fastDigitalWrite(secondFirePin, 1);
-    delayMicroseconds(390);  // 3000
-    fastDigitalWrite(firstFirePin, 0);
-    delayMicroseconds(750);
+    delayMicroseconds(170);
+    fastDigitalWrite(firstFirePin, 0);  //sec sh be 1470 449before
+    delayMicroseconds(1180); //1180 - best 40.4 - todo try with preload 4280
     fastDigitalWrite(secondFirePin, 0);
+
+
+
+    // fastDigitalWrite(firstFirePin, 1);
+    // delayMicroseconds(2600);  // 3000
+    // fastDigitalWrite(secondFirePin, 0);
+    // delayMicroseconds(390);  // 3000
+    // fastDigitalWrite(firstFirePin, 0);
+    // delayMicroseconds(750);
+    // fastDigitalWrite(secondFirePin, 0);
 
 
     shouldFire = false;
