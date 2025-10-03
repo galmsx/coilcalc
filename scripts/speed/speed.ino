@@ -37,7 +37,7 @@ void loop() {
 
 
   if (pulse > 0) {
-    float Speed = (1000000 / (float)pulse) * 0.0426;
+    float Speed = (1000000 / (float)pulse) * 0.041;
 
     Serial.println(Speed);
 
